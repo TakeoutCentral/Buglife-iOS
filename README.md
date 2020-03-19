@@ -1,4 +1,4 @@
-## Chnage in this repo (forked from Buglife/Buglife-iOS )
+## Changes in this repo (forked from Buglife/Buglife-iOS )
 - Added assertion to base url
 - Removed LIFETelephonyNetworkInfo
 - Removed logClientEventWithName
