@@ -1,3 +1,13 @@
+###Chnage in this repo( orked from Buglife/Buglife-iOS )
+- Added assertion to base url
+- Removed LIFETelephonyNetworkInfo
+- Removed logClientEventWithName
+- Migrated to Swift 5
+- Fixed project settings/warnings
+- Enabled email input filed, removed not required feedback options
+- Removed location manager
+- Make api base url customizable
+
 <p align="center">
 	<img src="https://ds9bjnn93rsnp.cloudfront.net/assets/logo/logotype_black_on_transparent_782x256-7256a7ab03e9652908f43be94681bc4ebeff6d729c36c946c346a80a4f8ca245.png" width=300 />
 </p>
