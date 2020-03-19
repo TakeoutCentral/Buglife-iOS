@@ -102,11 +102,11 @@ Now run `carthage update`. Then drag & drop the Buglife.framework in the Carthag
 	
 	```swift
 	// Swift
-	Buglife.shared().start(withEmail: "you@yourdomain.com")
+	*Buglife.shared().start(withEmail: "alex@gmail.com", baseURL: "www.example.com")*
 	```
 	```objective-c
 	// Objective-C
-	[[Buglife sharedBuglife] startWithEmail:@"you@yourdomain.com"];
+	*[[Buglife sharedBuglife] startWithEmail:@"you@yourdomain.com" baseURL: @"www.example.com"];*
 	```
 	Be sure to replace `you@yourdomain.com` with your own email address; this is where bug reports will be sent to.
 	
