@@ -1,4 +1,4 @@
-###Chnage in this repo( orked from Buglife/Buglife-iOS )
+## Chnage in this repo( orked from Buglife/Buglife-iOS )
 - Added assertion to base url
 - Removed LIFETelephonyNetworkInfo
 - Removed logClientEventWithName
