@@ -170,7 +170,7 @@ extern NSString * __nonnull const LIFEAttributeKeyJiraProjectKey;
  *  @param email The email address to which bug reports should be sent. This email address should
  *               belong to you or someone on your team.
  */
-- (void)startWithEmail:(nonnull NSString *)email;
+- (void)startWithEmail:(nonnull NSString *)email baseURL: (nonnull NSString *)url;
 
 /**
  *  Immediately presents the Buglife bug reporter view controller.

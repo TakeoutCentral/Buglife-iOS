@@ -20,7 +20,6 @@
 #import "LIFEMacros.h"
 #import "NSError+LIFEAdditions.h"
 
-static NSString * const kBaseURL = @"https://www.buglife.com";
 static BOOL LIFEStatusCodeIsSuccess(NSInteger statusCode);
 
 @interface LIFENetworkManager ()
@@ -60,7 +59,8 @@ static BOOL LIFEStatusCodeIsSuccess(NSInteger statusCode);
 
 - (NSURLSessionTask *)_taskWithHTTPMethod:(NSString *)HTTPMethod URL:(NSString *)URLString parameters:(NSDictionary *)parameters callbackQueue:(dispatch_queue_t)callbackQueue success:(LIFENetworkManagerSuccess)success failure:(LIFENetworkManagerFailure)failure
 {
-    NSURL *baseURL = [[self class] _baseURL];
+    NSAssert(![self.baseURLString isEqualToString:@""], @"_baseURL can not be empty");
+    NSURL *baseURL = [NSURL URLWithString:self.baseURLString];
     NSURL *url = [baseURL URLByAppendingPathComponent:URLString];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     
@@ -114,19 +114,6 @@ static BOOL LIFEStatusCodeIsSuccess(NSInteger statusCode);
     [task resume];
     
     return task;
-}
-
-+ (NSURL *)_baseURL
-{
-    // The default API base URL can be overridden if, say, you're pointing to an internal Buglife instance
-    NSDictionary *environment = [[NSProcessInfo processInfo] environment];
-    NSString *overrideURL = environment[@"com.buglife.base_url"];
-    if (overrideURL) {
-        NSLog(@"Running with overridden base url: %@", overrideURL);
-        return [NSURL URLWithString:overrideURL];
-    }
-    
-    return [NSURL URLWithString:kBaseURL];
 }
 
 @end

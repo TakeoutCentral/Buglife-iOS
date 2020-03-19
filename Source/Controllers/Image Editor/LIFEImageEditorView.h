@@ -38,7 +38,7 @@
 - (nonnull UIView *)backgroundView;
 
 @property (nonatomic, readonly) LIFEToolButtonType selectedTool;
-@property (nonatomic) LIFEImageEditorSegmentedControlDidChange toolDidChangeHandler;
+@property (nonatomic) LIFEImageEditorSegmentedControlDidChange _Nullable toolDidChangeHandler;
 
 + (CGFloat)imageBorderWidth;
 + (nonnull UIColor *)imageBorderColor;

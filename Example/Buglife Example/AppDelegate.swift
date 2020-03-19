@@ -21,23 +21,16 @@ import Buglife
 import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, BuglifeDelegate, CLLocationManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, BuglifeDelegate {
 
     var window: UIWindow?
-    var locationManager: CLLocationManager?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Buglife.shared().start(withEmail: "<#Your_email_here#>") // Replace with your email to send bug reports
+        Buglife.shared().start(withEmail: "alex@gmail.com", baseURL: "www.example.com") // Replace with your email to send bug reports and your API baseURL
         Buglife.shared().invocationOptions = [.shake, .screenshot, .floatingButton]
         Buglife.shared().delegate = self
         Buglife.shared().inputFields = LIFETextInputField.bugDetailInputFields()
-        locationManager = CLLocationManager()
-        locationManager?.delegate = self
-        let authStatus = CLLocationManager.authorizationStatus()
-        if (authStatus == .notDetermined) {
-            locationManager?.requestWhenInUseAuthorization()
-        }
+
         return true
     }
     
@@ -45,16 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BuglifeDelegate, CLLocati
     
     func buglife(_ buglife: Buglife, titleForPromptWithInvocation invocation: LIFEInvocationOptions) -> String? {
         return "Spotted a bug?"
-    }
-    
-    // MARK: CLLocationManagerDelegate
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        locationManager?.startUpdatingLocation()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // do your usual location processing. 
     }
 }
 

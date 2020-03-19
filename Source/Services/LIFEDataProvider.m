@@ -46,6 +46,7 @@ static NSString * const kPlatform = @"ios";
 
 @property (nonatomic) LIFEReportOwner *reportOwner;
 @property (nonatomic) NSString *sdkVersion;
+@property (nonatomic) NSString *baseURL;
 @property (nonatomic) NSString *sdkName;
 @property (nonatomic) LIFEAppInfoProvider *appInfoProvider;
 @property (nonatomic) LIFENetworkManager *networkManager;
@@ -57,15 +58,17 @@ static NSString * const kPlatform = @"ios";
 
 #pragma mark - Initialization
 
-- (instancetype)initWithReportOwner:(LIFEReportOwner *)reportOwner SDKVersion:(NSString *)sdkVersion
+- (instancetype)initWithReportOwner:(LIFEReportOwner *)reportOwner SDKVersion:(NSString *)sdkVersion baseURL:(nonnull NSString *)baseURL ;
 {
     self = [super init];
     if (self) {
+        _baseURL = baseURL;
         _reportOwner = reportOwner;
         _sdkVersion = sdkVersion;
         _sdkName = NSClassFromString(@"RNBuglife") != Nil ? @"Buglife React Native iOS" : @"Buglife iOS";
         _appInfoProvider = [[LIFEAppInfoProvider alloc] init];
         _networkManager = [[LIFENetworkManager alloc] init];
+        [_networkManager setBaseURLString:self.baseURL];
         _workQueue = dispatch_queue_create("com.buglife.LIFEDataProvider.workQueue", DISPATCH_QUEUE_SERIAL);
     }
     return self;
@@ -73,17 +76,10 @@ static NSString * const kPlatform = @"ios";
 
 - (instancetype)init
 {
-    LIFE_THROW_UNAVAILABLE_EXCEPTION(initWithReportOwner:SDKVersion:);
+    LIFE_THROW_UNAVAILABLE_EXCEPTION(initWithReportOwner:SDKVersion:baseURL:);
 }
 
 #pragma mark - Client Events
-
-- (void)logClientEventWithName:(nonnull NSString *)eventName afterDelay:(NSTimeInterval)delay
-{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self logClientEventWithName:eventName];
-    });
-}
 
 - (void)logClientEventWithName:(nonnull NSString *)eventName
 {
@@ -182,7 +178,7 @@ static NSString * const kPlatform = @"ios";
         [self _savePendingReport:report];
     }
     
-    [_networkManager POST:@"api/v1/reports.json" parameters:parameters callbackQueue:self.workQueue success:^(id responseObject) {
+    [_networkManager POST:@"api/v1/reports" parameters:parameters callbackQueue:self.workQueue success:^(id responseObject) {
 
         LIFELogIntInfo(@"Report submitted!");
         if (removeSuccessfulSubmissions) {

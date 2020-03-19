@@ -57,10 +57,7 @@
     inputField.title = self.title;
     inputField.required = self.required;
     inputField.systemAttribute = self.systemAttribute;
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    inputField.visible = self.visible;
-#pragma clang diagnostic pop
+    
     return inputField;
 }
 
@@ -106,21 +103,12 @@
     summaryInputField.placeholder = LIFELocalizedString(LIFEStringKey_SummaryInputFieldDetailedPlaceholder);
     summaryInputField.accessibilityHint = LIFELocalizedString(LIFEStringKey_SummaryInputFieldAccessibilityDetailedHint);
     
-    LIFETextInputField *stepsToReproduce = [[LIFETextInputField alloc] initWithAttributeName:@"Steps to Reproduce"];
-    stepsToReproduce.multiline = YES;
-    stepsToReproduce.title = LIFELocalizedString(LIFEStringKey_StepsToReproduce);
+    LIFETextInputField *yourEmail = [LIFETextInputField userEmailInputField];
+    yourEmail.multiline = NO;
+    yourEmail.title = LIFELocalizedString(LIFEStringKey_UserEmailInputFieldTitle);
+    yourEmail.placeholder = LIFELocalizedString(LIFEStringKey_UserEmailInputFieldPlaceholder);
 
-    LIFETextInputField *expectedResults = [[LIFETextInputField alloc] initWithAttributeName:@"Expected Results"];
-    expectedResults.multiline = YES;
-    expectedResults.title = LIFELocalizedString(LIFEStringKey_ExpectedResults);
-    expectedResults.placeholder = LIFELocalizedString(LIFEStringKey_ExpectedResultsPlaceholder);
-    
-    LIFETextInputField *actualResults = [[LIFETextInputField alloc] initWithAttributeName:@"Actual Results"];
-    actualResults.multiline = YES;
-    actualResults.title = LIFELocalizedString(LIFEStringKey_ActualResults);
-    actualResults.placeholder = LIFELocalizedString(LIFEStringKey_ActualResultsPlaceholder);
-    
-    return @[summaryInputField, stepsToReproduce, expectedResults, actualResults];
+    return @[yourEmail, summaryInputField];
 }
 
 #pragma mark - Debug description

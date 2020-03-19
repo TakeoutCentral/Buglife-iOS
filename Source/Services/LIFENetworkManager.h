@@ -23,6 +23,9 @@ typedef void (^LIFENetworkManagerFailure)(NSError *error);
 
 @interface LIFENetworkManager : NSObject
 
+@property (nonatomic) NSString *baseURLString;
+
+
 - (NSURLSessionTask *)PUT:(NSString *)URLString parameters:(NSDictionary *)parameters callbackQueue:(dispatch_queue_t)callbackQueue success:(LIFENetworkManagerSuccess)success failure:(LIFENetworkManagerFailure)failure;
 - (NSURLSessionTask *)POST:(NSString *)URLString parameters:(NSDictionary *)parameters callbackQueue:(dispatch_queue_t)callbackQueue success:(LIFENetworkManagerSuccess)success failure:(LIFENetworkManagerFailure)failure;
 

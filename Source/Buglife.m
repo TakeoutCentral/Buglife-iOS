@@ -99,6 +99,7 @@ const LIFEInvocationOptions LIFEInvocationOptionsScreenRecordingFinished = 1 << 
 
 @property (nonatomic) NSString *userIdentifier;
 @property (nonatomic) NSString *userEmail;
+@property (nonatomic) NSString *baseURL;
 @property (nonatomic) LIFEAttachmentManager *attachmentManager;
 
 @property (nonatomic) LIFEInputField *userEmailField;
@@ -194,7 +195,7 @@ const LIFEInvocationOptions LIFEInvocationOptionsScreenRecordingFinished = 1 << 
     [self _startBuglife];
 }
 
-- (void)startWithEmail:(NSString *)email
+- (void)startWithEmail:(NSString *)email baseURL:(nonnull NSString *)url
 {
     if ([self _isStarted]) {
         LIFELogErrorMultipleStartAttempts;
@@ -206,6 +207,7 @@ const LIFEInvocationOptions LIFEInvocationOptionsScreenRecordingFinished = 1 << 
         return;
     }
     
+    self.baseURL = url;
     self.reportOwner = [LIFEReportOwner reportOwnerWithEmail:email];
     [self _startBuglife];
 }
@@ -222,7 +224,6 @@ const LIFEInvocationOptions LIFEInvocationOptionsScreenRecordingFinished = 1 << 
     
     [self _enableOrDisableBugButton];
     [self.dataProvider flushPendingReportsAfterDelay:2.0];
-    [self.dataProvider logClientEventWithName:@"app_launch" afterDelay:10.0];
 }
 
 - (BOOL)_isStarted
@@ -380,7 +381,6 @@ const LIFEInvocationOptions LIFEInvocationOptionsScreenRecordingFinished = 1 << 
     if (invocation == LIFEInvocationOptionsNone) {
         // If the reporter was presented manually, we should log it. Otherwise it should be logged at the actual invocation time
         [self _notifyBuglifeInvoked];
-        [self.dataProvider logClientEventWithName:@"reporter_invoked_manually"];
     }
     
     self.lastUsedInovcationMethod = invocation;
@@ -442,8 +442,6 @@ const LIFEInvocationOptions LIFEInvocationOptionsScreenRecordingFinished = 1 << 
     if (self.useLegacyReporterUI) {
         self.reportWindow = reportWindow;
     }
-    
-    [self.dataProvider logClientEventWithName:@"presented_reporter" afterDelay:2.0];
 }
 
 - (void)_showContainerWindowWithViewController:(nonnull UIViewController *)viewController animated:(BOOL)animated completion:(void (^)(void))completion
@@ -579,7 +577,7 @@ const LIFEInvocationOptions LIFEInvocationOptionsScreenRecordingFinished = 1 << 
 - (LIFEDataProvider *)dataProvider
 {
     if (_dataProvider == nil) {
-        _dataProvider = [[LIFEDataProvider alloc] initWithReportOwner:self.reportOwner SDKVersion:self.version];
+        _dataProvider = [[LIFEDataProvider alloc] initWithReportOwner:self.reportOwner SDKVersion:self.version baseURL:self.baseURL];
     }
     
     return _dataProvider;
@@ -859,14 +857,11 @@ static const NSTimeInterval kAttachmentRequestTimerDuration = 3;
 
 #pragma mark - Email field
 
+
 - (LIFEInputField *)userEmailField
 {
     if (_userEmailField == nil) {
         _userEmailField = [LIFETextInputField userEmailInputField];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        _userEmailField.visible = NO;
-#pragma clang diagnostic pop
     }
     
     return _userEmailField;
@@ -901,16 +896,7 @@ static const NSTimeInterval kAttachmentRequestTimerDuration = 3;
         LIFEInputField *summaryInputField = [LIFETextInputField summaryInputField];
         [inputFields addObject:summaryInputField];
         
-        // The `visible` property on LIFEInputField was the old
-        // way of enabling the userEmail field. It's now deprecated, but
-        // if users are still using the `visible` property AND they are not
-        // using custom input fields, then show the user email field.
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        if (_userEmailField.visible) {
-#pragma clang diagnostic pop
-            [inputFields addObject:_userEmailField];
-        }
+        [inputFields addObject:_userEmailField];
         
         _inputFields = [NSArray arrayWithArray:inputFields];
     }

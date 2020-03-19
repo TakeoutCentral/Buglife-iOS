@@ -26,11 +26,10 @@ typedef void (^LIFEDataProviderSubmitCompletion)(BOOL submitted);
 
 @interface LIFEDataProvider : NSObject
 
-- (nonnull instancetype)initWithReportOwner:(nonnull LIFEReportOwner *)reportOwner SDKVersion:(nonnull NSString *)sdkVersion;
+- (nonnull instancetype)initWithReportOwner:(nonnull LIFEReportOwner *)reportOwner SDKVersion:(nonnull NSString *)sdkVersion baseURL:(nonnull NSString *)baseURL ;
 - (_Null_unspecified instancetype)init NS_UNAVAILABLE;
 - (void)submitReport:(nonnull LIFEReport *)report withRetryPolicy:(LIFERetryPolicy)retryPolicy completion:(nullable LIFEDataProviderSubmitCompletion)completion;
 - (void)flushPendingReportsAfterDelay:(NSTimeInterval)delay;
-- (void)logClientEventWithName:(nonnull NSString *)eventName afterDelay:(NSTimeInterval)delay;
 - (void)logClientEventWithName:(nonnull NSString *)eventName;
 
 @end

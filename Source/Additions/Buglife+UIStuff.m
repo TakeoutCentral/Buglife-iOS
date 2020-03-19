@@ -48,7 +48,6 @@ typedef void (^LIFEAlertOrUIAlertActionHandler)(NSObject *action);
 - (void)_presentAlertControllerForInvocation:(LIFEInvocationOptions)invocation withScreenshot:(UIImage *)screenshot
 {
     [self _notifyBuglifeInvoked];
-    [self.dataProvider logClientEventWithName:@"reporter_invoked"];
     
     // Hide the keyboard before showing the alert
     UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];

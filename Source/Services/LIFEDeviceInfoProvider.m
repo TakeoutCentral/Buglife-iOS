@@ -22,7 +22,6 @@
 #import <mach/mach_host.h>
 #import <sys/utsname.h>
 #import <UIKit/UIKit.h>
-#import "LIFETelephonyNetworkInfo.h"
 #import "LIFEReachability.h"
 #import "LIFEDeviceInfo.h"
 #import "LIFEAttribute.h"
@@ -48,10 +47,6 @@ static NSString *LIFEContentSizeCategoryFromUIContentSizeCategory(UIContentSizeC
     
     deviceInfo.freeMemory = life_mach_freeMemory();
     deviceInfo.usableMemory = life_mach_usableMemory();
-    
-    LIFETelephonyNetworkInfo *networkInfo = [[LIFETelephonyNetworkInfo alloc] init];
-    deviceInfo.carrierName = networkInfo.carrierName;
-    deviceInfo.currentRadioAccessTechnology = networkInfo.currentRadioAccessTechnology;
     
     LIFEReachability *reachability = [LIFEReachability reachabilityForLocalWiFi];
     deviceInfo.wifiConnected = [reachability isReachableViaWiFi];
