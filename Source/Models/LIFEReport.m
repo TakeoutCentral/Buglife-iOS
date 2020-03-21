@@ -135,15 +135,16 @@
     [reportDict life_safeSetObject:@(report.submissionAttempts) forKey:@"submission_attempts"];
     [reportDict life_safeSetObject:report._formattedCreationDate forKey:@"invoked_at"];
     
-    if (self.attributes.count > 0) {
-        NSMutableDictionary *attributesJSON = [[NSMutableDictionary alloc] init];
-        
-        [self.attributes enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, LIFEAttribute * _Nonnull obj, BOOL * _Nonnull stop) {
-            attributesJSON[key] = obj.JSONDictionary;
-        }];
-        
-        [reportDict life_safeSetObject:attributesJSON forKey:@"attributes"];
-    }
+    // TODO: do not need it at this moment
+//    if (self.attributes.count > 0) {
+//        NSMutableDictionary *attributesJSON = [[NSMutableDictionary alloc] init];
+//
+//        [self.attributes enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, LIFEAttribute * _Nonnull obj, BOOL * _Nonnull stop) {
+//            attributesJSON[key] = obj.JSONDictionary;
+//        }];
+//
+//        [reportDict life_safeSetObject:attributesJSON forKey:@"attributes"];
+//    }
     
     return [NSDictionary dictionaryWithDictionary:reportDict];
 }

@@ -214,8 +214,9 @@ NSString * const LIFEReportBuilderAnnotatedImagesDidChangeNotification = @"com.b
         NSArray<LIFEReportAttachmentImpl *> *nonImageAttachments = self.nonImageAttachments;
         
         if (archivedLogData) {
-            LIFEReportAttachmentImpl *logAttachment = [[LIFEReportAttachmentImpl alloc] initWithLogData:archivedLogData];
-            nonImageAttachments = [self.nonImageAttachments arrayByAddingObject:logAttachment];
+            // TODO: do not need it at this moment
+//            LIFEReportAttachmentImpl *logAttachment = [[LIFEReportAttachmentImpl alloc] initWithLogData:archivedLogData];
+//            nonImageAttachments = [self.nonImageAttachments arrayByAddingObject:logAttachment];
         }
         
         __weak typeof(self) weakSelf = self;
