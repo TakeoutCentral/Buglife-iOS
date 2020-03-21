@@ -1,3 +1,13 @@
+## Changes in this repo (forked from Buglife/Buglife-iOS )
+- Added assertion to base url
+- Removed LIFETelephonyNetworkInfo
+- Removed logClientEventWithName
+- Migrated to Swift 5
+- Fixed project settings/warnings
+- Enabled email input filed, removed not required feedback options
+- Removed location manager
+- Make api base url customizable
+
 <p align="center">
 	<img src="https://ds9bjnn93rsnp.cloudfront.net/assets/logo/logotype_black_on_transparent_782x256-7256a7ab03e9652908f43be94681bc4ebeff6d729c36c946c346a80a4f8ca245.png" width=300 />
 </p>
@@ -92,11 +102,11 @@ Now run `carthage update`. Then drag & drop the Buglife.framework in the Carthag
 	
 	```swift
 	// Swift
-	Buglife.shared().start(withEmail: "you@yourdomain.com")
+	*Buglife.shared().start(withEmail: "alex@gmail.com", baseURL: "www.example.com")*
 	```
 	```objective-c
 	// Objective-C
-	[[Buglife sharedBuglife] startWithEmail:@"you@yourdomain.com"];
+	*[[Buglife sharedBuglife] startWithEmail:@"you@yourdomain.com" baseURL: @"www.example.com"];*
 	```
 	Be sure to replace `you@yourdomain.com` with your own email address; this is where bug reports will be sent to.
 	
