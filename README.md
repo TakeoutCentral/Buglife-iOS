@@ -1,3 +1,4 @@
+# In order to build you own server, you need to checkout this forked repo
 ## Changes in this repo (forked from Buglife/Buglife-iOS )
 - Added assertion to base url
 - Removed LIFETelephonyNetworkInfo
@@ -7,6 +8,12 @@
 - Enabled email input filed, removed not required feedback options
 - Removed location manager
 - Make api base url customizable
+
+To integrate Buglife into your Xcode project using [CocoaPods](https://cocoapods.org), specify it in your `Podfile`:
+
+```ruby
+pod 'Buglife', :git => 'https://github.com/alexliubj/Buglife-iOS'
+```
 
 <p align="center">
 	<img src="https://ds9bjnn93rsnp.cloudfront.net/assets/logo/logotype_black_on_transparent_782x256-7256a7ab03e9652908f43be94681bc4ebeff6d729c36c946c346a80a4f8ca245.png" width=300 />
