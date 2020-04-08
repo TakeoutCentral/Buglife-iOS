@@ -206,6 +206,11 @@ extern NSString * __nonnull const LIFEAttributeKeyJiraProjectKey;
 - (void)setStringValue:(nullable NSString *)value forAttribute:(nonnull NSString *)attribute;
 
 /**
+ *	Present alert controller directly without any button
+ */
+- (void)presentAlertController;
+
+/**
  *  Set this property if you'd like to use custom input fields. The bug reporter UI
  *  will display fields in this same order.
  *

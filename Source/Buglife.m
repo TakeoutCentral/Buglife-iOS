@@ -789,6 +789,13 @@ void life_dispatch_async_to_main_queue(dispatch_block_t block) {
     [overlayWindow.rootViewController presentViewController:alert animated:YES completion:NULL];
 }
 
+#pragma mark - Present bug window without screenshot
+
+- (void)presentAlertController
+{
+    [self _presentAlertControllerForInvocation:LIFEInvocationOptionsFloatingButton withScreenshot:nil];
+}
+
 #pragma mark - LIFEBugButtonWindowDelegate
 
 - (void)bugButtonWasTappedInWindow:(LIFEBugButtonWindow *)bugButtonWindow

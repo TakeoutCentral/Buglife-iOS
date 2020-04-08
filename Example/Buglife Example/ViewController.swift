@@ -24,7 +24,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var testButton: UIButton?
     
     @IBAction func someAction() {
-        life_log_debug("I tapped a button!")
+        //life_log_debug("I tapped a button!")
+        
+        Buglife.shared().presentReporter()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
