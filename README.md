@@ -8,6 +8,7 @@
 - Enabled email input filed, removed not required feedback options
 - Removed location manager
 - Make api base url customizable
+- Server side is located at /server (Python + Heroku)
 
 To integrate Buglife into your Xcode project using [CocoaPods](https://cocoapods.org), specify it in your `Podfile`:
 
