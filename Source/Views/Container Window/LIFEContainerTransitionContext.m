@@ -69,6 +69,7 @@
     return _containerView.bounds;
 }
 
+- (void)pauseInteractiveTransition { }
 - (void)finishInteractiveTransition { }
 
 - (CGRect)initialFrameForViewController:(nonnull UIViewController *)vc {

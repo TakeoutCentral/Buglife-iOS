@@ -169,7 +169,7 @@ const LIFEInvocationOptions LIFEInvocationOptionsScreenRecordingFinished = 1 << 
     return nil;
 }
 
-#define LIFELogErrorMultipleStartAttempts LIFELogExtDebug(@"Buglife Error: Attempted to call %@ or %@ more than once! Subsequent calls will be ignored.", NSStringFromSelector(@selector(startWithAPIKey:)), NSStringFromSelector(@selector(startWithEmail:)))
+#define LIFELogErrorMultipleStartAttempts LIFELogExtDebug(@"Buglife Error: Attempted to call %@ or %@ more than once! Subsequent calls will be ignored.", NSStringFromSelector(@selector(startWithAPIKey:)), NSStringFromSelector(@selector(startWithEmail:baseURL:)))
 
 - (void)startWithAPIKey:(NSString *)apiKey
 {
@@ -203,7 +203,7 @@ const LIFEInvocationOptions LIFEInvocationOptionsScreenRecordingFinished = 1 << 
     }
     
     if (email == nil) {
-        LIFELogExtDebug(@"Buglife Error: Attempted to call [%@ %@] with a nil email!", NSStringFromClass([self class]), NSStringFromSelector(@selector(startWithEmail:)));
+        LIFELogExtDebug(@"Buglife Error: Attempted to call [%@ %@] with a nil email!", NSStringFromClass([self class]), NSStringFromSelector(@selector(startWithEmail:baseURL:)));
         return;
     }
     
@@ -371,7 +371,7 @@ const LIFEInvocationOptions LIFEInvocationOptionsScreenRecordingFinished = 1 << 
 - (void)_presentReporterFromInvocation:(LIFEInvocationOptions)invocation withScreenshot:(UIImage *)screenshot animated:(BOOL)animated
 {
     if (![self _isStarted]) {
-        LIFELogExtDebug(@"Buglife Error: Attempted to present Buglife reporter with no API key or email. To fix this, make sure to invoke [%@ %@] with a valid API key, or [%@ %@] with your email address in your app delegate's %@ method.", NSStringFromClass([self class]), NSStringFromSelector(@selector(startWithAPIKey:)), NSStringFromSelector(@selector(application:didFinishLaunchingWithOptions:)), NSStringFromClass([self class]), NSStringFromSelector(@selector(startWithEmail:)));
+        LIFELogExtDebug(@"Buglife Error: Attempted to present Buglife reporter with no API key or email. To fix this, make sure to invoke [%@ %@] with a valid API key, or [%@ %@] with your email address in your app delegate's %@ method.", NSStringFromClass([self class]), NSStringFromSelector(@selector(startWithAPIKey:)), NSStringFromSelector(@selector(application:didFinishLaunchingWithOptions:)), NSStringFromClass([self class]), NSStringFromSelector(@selector(startWithEmail:baseURL:)));
         return;
     }
     
