@@ -29,7 +29,6 @@ LIFEImageFormat LIFEImageFormatFromUniformTypeIdentifierAndFilename(NSString *un
     } else if ([uniformTypeIdentifier isEqualToString:LIFEAttachmentTypeIdentifierImage]) {
         return LIFEImageFormatInferredFromFilename(filename);
     } else {
-        NSCAssert(NO, @"Unexpected uniform type identifier");
         return LIFEImageFormatInferredFromFilename(filename);
     }
 }
