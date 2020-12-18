@@ -4,20 +4,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "Buglife-iOS",
+    name: "Buglife",
     platforms: [
         .iOS(.v12),
     ],
     products: [
         .library(
-            name: "Buglife-iOS",
-            targets: ["Buglife-iOS"]
+            name: "Buglife",
+            targets: ["Buglife"]
         ),
     ],
     dependencies: [],
     targets: [
         .target(
-            name: "Buglife-iOS",
+            name: "Buglife",
             dependencies: [],
             path: "Source",
 			publicHeadersPath: "include"
