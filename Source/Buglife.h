@@ -285,6 +285,8 @@ extern NSString * __nonnull const LIFEAttributeKeyJiraProjectKey;
  */
 - (null_unspecified instancetype)init NS_UNAVAILABLE;
 
+@property (nonatomic, strong) NSString * _Nonnull titleForReportViewController;
+
 @end
 
 /**
