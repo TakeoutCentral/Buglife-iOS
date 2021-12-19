@@ -112,7 +112,7 @@ const LIFEInvocationOptions LIFEInvocationOptionsScreenRecordingFinished = 1 << 
  These should be made public in an upcoming release.
  */
 @property (nonatomic, null_resettable) NSString *thankYouMessage;
-@property (nonatomic, null_resettable) NSString *titleForReportViewController;
+@property (nonatomic, strong) NSString *titleForReportViewController;
 
 // Legacy features, but some people might still want to use them.
 // If they're dying for it, let them use it via private API.

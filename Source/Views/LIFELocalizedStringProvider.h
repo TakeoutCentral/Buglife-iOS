@@ -35,7 +35,7 @@
     $1 : @"$2”,
  */
 
-LIFEStringKey LIFEStringKey_PoweredByBuglife = @"Powered by Buglife";
+LIFEStringKey LIFEStringKey_PoweredByBuglife = @"Submit your feedback - Powered by Buglife";
 
 #define NSStringize_helper(x) #x
 #define NSStringize(x) @NSStringize_helper(x)
