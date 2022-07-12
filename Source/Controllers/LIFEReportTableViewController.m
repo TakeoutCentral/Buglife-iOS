@@ -981,6 +981,7 @@ static const NSInteger kNoCurrentEditingAnnotatedImage = NSNotFound;
 
 - (void)textFieldCellDidReturn:(LIFETextFieldCell *)textFieldCell
 {
+    [self textFieldCellDidChange:textFieldCell];
     [textFieldCell resignFirstResponder];
 }
 
