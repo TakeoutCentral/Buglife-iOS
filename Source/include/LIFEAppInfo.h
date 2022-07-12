@@ -24,6 +24,7 @@
 @property (nonatomic, copy) NSString *bundleVersion;
 @property (nonatomic, copy) NSString *bundleIdentifier;
 @property (nonatomic, copy) NSString *bundleName;
+@property (nonatomic, copy) NSString *platform;
 
 - (NSDictionary *)JSONDictionary;
 

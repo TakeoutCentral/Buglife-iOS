@@ -22,6 +22,15 @@
 
 @implementation LIFEAppInfo
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.platform = @"iOS";
+    }
+    return self;
+}
+
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
     self = [super init];
@@ -47,7 +56,8 @@
     return @[LIFE_STRING_FROM_SELECTOR_NAMED(bundleShortVersion),
              LIFE_STRING_FROM_SELECTOR_NAMED(bundleVersion),
              LIFE_STRING_FROM_SELECTOR_NAMED(bundleIdentifier),
-             LIFE_STRING_FROM_SELECTOR_NAMED(bundleName)];
+             LIFE_STRING_FROM_SELECTOR_NAMED(bundleName),
+             LIFE_STRING_FROM_SELECTOR_NAMED(platform)];
 }
 
 - (NSDictionary *)JSONDictionary
@@ -59,6 +69,7 @@
     [LIFENSMutableDictionaryify(appDict) life_safeSetObject:appInfo.bundleShortVersion forKey:@"bundle_short_version"];
     [LIFENSMutableDictionaryify(appDict) life_safeSetObject:appInfo.bundleVersion forKey:@"bundle_version"];
     [LIFENSMutableDictionaryify(appDict) life_safeSetObject:appInfo.bundleName forKey:@"bundle_name"];
+    [LIFENSMutableDictionaryify(appDict) life_safeSetObject:appInfo.platform forKey:@"platform"];
     
     return [NSDictionary dictionaryWithDictionary:appDict];
 }
