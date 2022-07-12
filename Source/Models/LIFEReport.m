@@ -168,7 +168,7 @@
 - (NSString *)_formattedCreationDate
 {
     NSDateFormatter *iso8601DateFormatter = [[NSDateFormatter alloc] init];
-    [iso8601DateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZ"];
+    [iso8601DateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
     [iso8601DateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     return [iso8601DateFormatter stringFromDate:self.creationDate];
 }
