@@ -20,25 +20,10 @@ let package = Package(
             name: "Buglife",
             dependencies: [],
             path: "Source",
-			publicHeadersPath: "include",
-			cSettings: [
-				.headerSearchPath(""),
-				.headerSearchPath("Source"),
-     			.headerSearchPath("Source/Additions"),
-    			.headerSearchPath("Source/Controllers"),
-    			.headerSearchPath("Source/Controllers/AlertView"),
-    			.headerSearchPath("Source/Controllers/ImageEditor"),
-    			.headerSearchPath("Source/Models"),
-    			.headerSearchPath("Source/Protected"),
-    			.headerSearchPath("Source/Services"),
-    			.headerSearchPath("Source/Services/Logging"),
-    			.headerSearchPath("Source/Views"),
-    			.headerSearchPath("Source/Views/AnnotationViews"),
-    			.headerSearchPath("Source/Views/ContainerWindow"),
-				.headerSearchPath("Source/Views/GestureRecognizers"),
-				.headerSearchPath("Source/Views/JelloView"),
-				.headerSearchPath("Source/Views/Toast"),
-    		]
+            publicHeadersPath: "include",
+            cSettings: [
+                .headerSearchPath("include"),
+            ]
         ),
     ]
 )
